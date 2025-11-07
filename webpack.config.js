@@ -1,21 +1,15 @@
-const { shareAll, withModuleFederationPlugin } =
-  require('@angular-architects/module-federation/webpack');
+const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
 
-module.exports = {
-  ...withModuleFederationPlugin({
-   name: 'cloudflare-remote-app',
+module.exports = withModuleFederationPlugin({
 
-      exposes: {
-        './Books': './src/app/remote-entry/remote-books.component.ts',
-      },
+  name: 'cloudflare-remote-app',
 
-      shared: {
-        ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
-      },
-  }),
-  experiments: { outputModule: true },
-  output: {
-    scriptType: 'module',
-    library: { type: 'module' },
+  exposes: {
+     './Books': './src/app/remote-entry/remote-books.component.ts',
   },
-};
+
+  shared: {
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  },
+
+});
