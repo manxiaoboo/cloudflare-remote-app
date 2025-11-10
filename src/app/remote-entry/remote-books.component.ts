@@ -16,7 +16,11 @@ import { map } from 'rxjs';
         <div class="book-item">
             <div>{{ book.name }}</div>
             <div>{{ book.description }}</div>
-            <div>{{ book.price }}{{ book.currency }}</div>
+            <div>{{ book.price }}{{ book.currency }}
+            @if (book.discount !== 1) {
+              <small style="text-decoration: line-through;">{{book.orginPrice}}</small>
+            }
+            </div>
         </div>
         }
       </div>
