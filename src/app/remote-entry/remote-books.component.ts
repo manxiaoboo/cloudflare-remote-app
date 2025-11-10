@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cloudflare-remote-books',
@@ -10,4 +11,12 @@ import { Component } from '@angular/core';
     </section>
   `
 })
-export class RemoteBooksComponent {}
+export class RemoteBooksComponent {
+  private http = inject(HttpClient);
+
+  constructor() {
+    this.http.get('https://bbf.anna091438.workers.dev/proxy-http/books').subscribe(data => {
+      console.info(data);
+    });
+  }
+}
